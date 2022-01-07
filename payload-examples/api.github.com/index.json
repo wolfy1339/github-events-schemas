@@ -1,0 +1,381 @@
+[
+  {
+    "name": "CommitCommentEvent",
+    "description": "A commit comment is created. The type of activity is specified in the `action` property of the payload object. For more information, see the \"[commit comment](https://docs.github.com/en/rest/reference/repos#comments)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "comment": {
+        "type": "object",
+        "description": "The [commit comment](https://docs.github.com/en/rest/reference/commits#get-a-commit-comment) resource."
+      }
+    },
+    "actions": ["created"],
+    "examples": []
+  },
+  {
+    "name": "CreateEvent",
+    "description": "A Git branch or tag is created. For more information, see the \"[Git data](https://docs.github.com/en/rest/reference/git)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "ref": {
+        "type": "string",
+        "description": "The [`git ref`](https://docs.github.com/en/rest/reference/git#get-a-reference) resource."
+      },
+      "ref_type": {
+        "type": "string",
+        "description": "The type of Git ref object created in the repository. Can be either `branch` or `tag`."
+      },
+      "master_branch": {
+        "type": "string",
+        "description": "The name of the repository's default branch (usually `main`)."
+      },
+      "description": {
+        "type": "string",
+        "description": "The repository's current description."
+      }
+    },
+    "actions": [],
+    "examples": []
+  },
+  {
+    "name": "DeleteEvent",
+    "description": "A Git branch or tag is deleted. For more information, see the \"[Git data](https://docs.github.com/en/rest/reference/git)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "ref": {
+        "type": "string",
+        "description": "The [`git ref`](https://docs.github.com/en/rest/reference/git#get-a-reference) resource."
+      },
+      "ref_type": {
+        "type": "string",
+        "description": "The type of Git ref oject deleted in the repository. Can be `branch` or `tag`."
+      }
+    },
+    "actions": [],
+    "examples": []
+  },
+  {
+    "name": "ForkEvent",
+    "description": "A user forks a repository. For more information, see the \"[forks](https://docs.github.com/en/rest/reference/repos#forks)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "forkee": {
+        "type": "object",
+        "description": "The created [`repository`](https://docs.github.com/en/rest/reference/repos#get-a-repository) resource."
+      }
+    },
+    "actions": [],
+    "examples": []
+  },
+  {
+    "name": "GollumEvent",
+    "description": "A wiki page is created or updated. For more information, see the \"[About wikis](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis)\".\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "pages": {
+        "type": "array",
+        "description": "The pages that were updated."
+      },
+      "pages[][page_name]": {
+        "type": "string",
+        "description": "The name of the page."
+      },
+      "pages[][title]": {
+        "type": "string",
+        "description": "The current page title."
+      },
+      "pages[][action]": {
+        "type": "string",
+        "description": "The action that was performed on the page. Can be `created` or `edited`."
+      },
+      "pages[][sha]": {
+        "type": "string",
+        "description": "The latest commit SHA of the page."
+      },
+      "pages[][html_url]": {
+        "type": "string",
+        "description": "Points to the HTML wiki page."
+      }
+    },
+    "actions": [],
+    "examples": []
+  },
+  {
+    "name": "IssueCommentEvent",
+    "description": "Activity related to an issue or pull request comment. The type of activity is specified in the `action` property of the payload object. For more information, see the \"[issue comments](https://docs.github.com/en/rest/reference/issues#comments)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "changes": {
+        "type": "object",
+        "description": "The changes to the comment if the action was `edited`."
+      },
+      "changes[body][from]": {
+        "type": "string",
+        "description": "The previous version of the body if the action was `edited`."
+      },
+      "issue": {
+        "type": "object",
+        "description": "The [issue](https://docs.github.com/en/rest/reference/issues) the comment belongs to."
+      },
+      "comment": {
+        "type": "object",
+        "description": "The [comment](https://docs.github.com/en/rest/reference/issues#comments) itself."
+      }
+    },
+    "actions": ["created", "deleted", "edited"],
+    "examples": []
+  },
+  {
+    "name": "IssuesEvent",
+    "description": "Activity related to an issue. The type of activity is specified in the `action` property of the payload object. For more information, see the \"[issues](https://docs.github.com/en/rest/reference/issues#comments)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "issue": {
+        "type": "object",
+        "description": "The [issue](https://docs.github.com/en/rest/reference/issues) itself."
+      },
+      "changes": {
+        "type": "object",
+        "description": "The changes to the issue if the action was `edited`."
+      },
+      "changes[title][from]": {
+        "type": "string",
+        "description": "The previous version of the title if the action was `edited`."
+      },
+      "changes[body][from]": {
+        "type": "string",
+        "description": "The previous version of the body if the action was `edited`."
+      },
+      "assignee": {
+        "type": "object",
+        "description": "The optional user who was assigned or unassigned from the issue."
+      },
+      "label": {
+        "type": "object",
+        "description": "The optional label that was added or removed from the issue."
+      }
+    },
+    "actions": [
+      "assigned",
+      "closed",
+      "edited",
+      "labeled",
+      "opened",
+      "reopened",
+      "unassigned",
+      "unlabeled"
+    ],
+    "examples": []
+  },
+  {
+    "name": "MemberEvent",
+    "description": "Activity related to repository collaborators. The type of activity is specified in the `action` property of the payload object. For more information, see the \"[collaborators](https://docs.github.com/en/rest/reference/repos#collaborators)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "member": {
+        "type": "object",
+        "description": "The [user](https://docs.github.com/en/rest/reference/users) that was added."
+      },
+      "changes": {
+        "type": "object",
+        "description": "The changes to the collaborator permissions if the action was `edited`."
+      },
+      "changes[old_permission][from]": {
+        "type": "string",
+        "description": "The previous permissions of the collaborator if the action was `edited`."
+      }
+    },
+    "actions": ["added"],
+    "examples": []
+  },
+  {
+    "name": "PublicEvent",
+    "description": "When a private repository is made public. Without a doubt: the best GitHub event.",
+    "properties": {},
+    "actions": [],
+    "examples": []
+  },
+  {
+    "name": "PullRequestEvent",
+    "description": "Activity related to pull requests. The type of activity is specified in the `action` property of the payload object. For more information, see the \"[pull requests](https://docs.github.com/en/rest/reference/pulls)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "number": {
+        "type": "integer",
+        "description": "The pull request number."
+      },
+      "changes": {
+        "type": "object",
+        "description": "The changes to the comment if the action was `edited`."
+      },
+      "changes[title][from]": {
+        "type": "string",
+        "description": "The previous version of the title if the action was `edited`."
+      },
+      "changes[body][from]": {
+        "type": "string",
+        "description": "The previous version of the body if the action was `edited`."
+      },
+      "pull_request": {
+        "type": "object",
+        "description": "The [pull request](https://docs.github.com/en/rest/reference/pulls) itself."
+      }
+    },
+    "actions": [
+      "assigned",
+      "closed",
+      "edited",
+      "labeled",
+      "opened",
+      "reopened",
+      "review_request_removed",
+      "review_requested",
+      "synchronize",
+      "unassigned",
+      "unlabeled"
+    ],
+    "examples": []
+  },
+  {
+    "name": "PullRequestReviewEvent",
+    "description": "Activity related to pull request reviews. The type of activity is specified in the `action` property of the payload object. For more information, see the \"[pull request reviews](https://docs.github.com/en/rest/reference/pulls#reviews)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "pull_request": {
+        "type": "object",
+        "description": "The pull request the review pertains to."
+      },
+      "review": {
+        "type": "object",
+        "description": "The review that was affected."
+      }
+    },
+    "actions": ["created"],
+    "examples": []
+  },
+  {
+    "name": "PullRequestReviewCommentEvent",
+    "description": "Activity related to pull request review comments in the pull request's unified diff. The type of activity is specified in the `action` property of the payload object. For more information, see the \"[pull request review comments](https://docs.github.com/en/rest/reference/pulls#comments)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "changes": {
+        "type": "object",
+        "description": "The changes to the comment if the action was `edited`."
+      },
+      "changes[body][from]": {
+        "type": "string",
+        "description": "The previous version of the body if the action was `edited`."
+      },
+      "pull_request": {
+        "type": "object",
+        "description": "The [pull request](https://docs.github.com/en/rest/reference/pulls) the comment belongs to."
+      },
+      "comment": {
+        "type": "object",
+        "description": "The [comment](https://docs.github.com/en/rest/reference/pulls#comments) itself."
+      }
+    },
+    "actions": ["created"],
+    "examples": []
+  },
+  {
+    "name": "PushEvent",
+    "description": "One or more commits are pushed to a repository branch or tag.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "push_id": {
+        "type": "integer",
+        "description": "Unique identifier for the push."
+      },
+      "size": {
+        "type": "integer",
+        "description": "The number of commits in the push."
+      },
+      "distinct_size": {
+        "type": "integer",
+        "description": "The number of distinct commits in the push."
+      },
+      "ref": {
+        "type": "string",
+        "description": "The full [`git ref`](https://docs.github.com/en/rest/reference/git#refs) that was pushed. Example: `refs/heads/main`."
+      },
+      "head": {
+        "type": "string",
+        "description": "The SHA of the most recent commit on `ref` after the push."
+      },
+      "before": {
+        "type": "string",
+        "description": "The SHA of the most recent commit on `ref` before the push."
+      },
+      "commits": {
+        "type": "array",
+        "description": "An array of commit objects describing the pushed commits. (The array includes a maximum of 20 commits. If necessary, you can use the [Commits API](https://docs.github.com/en/rest/reference/repos#commits) to fetch additional commits. This limit is applied to timeline events only and isn't applied to webhook deliveries.)"
+      },
+      "commits[][sha]": {
+        "type": "string",
+        "description": "The SHA of the commit."
+      },
+      "commits[][message]": {
+        "type": "string",
+        "description": "The commit message."
+      },
+      "commits[][author]": {
+        "type": "object",
+        "description": "The git author of the commit."
+      },
+      "commits[][author][name]": {
+        "type": "string",
+        "description": "The git author's name."
+      },
+      "commits[][author][email]": {
+        "type": "string",
+        "description": "The git author's email address."
+      },
+      "commits[][url]": {
+        "type": "url",
+        "description": "URL that points to the commit API resource."
+      },
+      "commits[][distinct]": {
+        "type": "boolean",
+        "description": "Whether this commit is distinct from any that have been pushed before."
+      }
+    },
+    "actions": [],
+    "examples": []
+  },
+  {
+    "name": "ReleaseEvent",
+    "description": "Activity related to a release. The type of activity is specified in the `action` property of the payload object. For more information, see the \"[releases](https://docs.github.com/en/rest/reference/repos#releases)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "changes[body][from]": {
+        "type": "string",
+        "description": "The previous version of the body if the action was `edited`."
+      },
+      "changes[name][from]": {
+        "type": "string",
+        "description": "The previous version of the name if the action was `edited`."
+      },
+      "release": {
+        "type": "object",
+        "description": "The [release](https://docs.github.com/en/rest/reference/repos/#get-a-release) object."
+      }
+    },
+    "actions": ["published"],
+    "examples": []
+  },
+  {
+    "name": "SponsorshipEvent",
+    "description": "Activity related to a sponsorship listing. The type of activity is specified in the `action` property of the payload object. For more information, see \"[About GitHub Sponsors](https://docs.github.com/en/sponsors/getting-started-with-github-sponsors/about-github-sponsors)\".",
+    "properties": {
+      "effective_date": {
+        "type": "string",
+        "description": "The `pending_cancellation` and `pending_tier_change` event types will include the date the cancellation or tier change will take effect."
+      },
+      "changes[tier][from]": {
+        "type": "object",
+        "description": "The `tier_changed` and `pending_tier_change` will include the original tier before the change or pending change. For more information, see the [pending tier change payload](https://docs.github.com/en/webhooks/event-payloads#webhook-payload-example-when-someone-downgrades-a-sponsorship)."
+      },
+      "changes[privacy_level][from]": {
+        "type": "string",
+        "description": "The `edited` event types include the details about the change when someone edits a sponsorship to change the privacy."
+      }
+    },
+    "actions": ["created"],
+    "examples": []
+  },
+  {
+    "name": "WatchEvent",
+    "description": "When someone stars a repository. The type of activity is specified in the `action` property of the payload object. For more information, see the \"[starring](https://docs.github.com/en/rest/reference/activity#starring)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {},
+    "actions": ["started"],
+    "examples": []
+  }
+]
