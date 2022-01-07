@@ -2,7 +2,10 @@
   "name": "github-events-schemas",
   "version": "0.0.0-development",
   "description": "machine-readable, always up-to-date GitHub Events specifications",
-  "main": "index.json",
+  "main": "payload-examples/api.github.com/index.json",
+  "files": [
+    "payload-examples/api.github.com/index.json"
+  ],
   "scripts": {
     "build": "ts-node -T bin/octokit-gh-events.ts check --cached",
     "build:webhooks": "ts-node -T bin/octokit-gh-events.ts update",
@@ -36,5 +39,36 @@
     "turndown": "^7.1.1",
     "typescript": "^4.5.4",
     "yargs": "^17.3.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "release": {
+    "branches": [
+      "master",
+      {
+        "name": "beta",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      [
+        "semantic-release-plugin-update-version-in-files",
+        {
+          "files": [
+            "package.json"
+          ]
+        }
+      ],
+      "@semantic-release/npm"
+    ]
+  },
+  "renovate": {
+    "extends": [
+      "github>octokit/.github"
+    ]
   }
 }
