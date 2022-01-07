@@ -30,8 +30,7 @@ jobs:
           node-version: 16
           cache: npm
       - run: npm ci
-      - run: npm run build:webhooks -- --check --cached
-      - run: npm run build:types
+      - run: npm run build:events -- --check --cached
       - run: git status
       - run: |
           git diff --exit-code || bash -c \
