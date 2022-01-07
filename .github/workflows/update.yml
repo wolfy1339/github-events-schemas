@@ -16,16 +16,15 @@ jobs:
           cache: npm
       - run: git checkout events-update || true
       - run: npm ci
-      - name: update .com webhooks
-        run: npm run build:webhooks
+      - name: update .com events
+        run: npm run build:events
       - uses: gr2m/create-or-update-pull-request-action@v1.x
         env:
           GITHUB_TOKEN: ${{ secrets.OCTOKITBOT_PAT }}
         with:
           title: 🤖📯 Octokit events changed
           body: >
-            I found new changes on [GitHub’s Webhooks Event Types &
-            Payloads](https://docs.github.com/en/free-pro-team@latest/developers/webhooks-and-events/webhook-events-and-payloads)
+            I found new changes on [GitHub’s GitHub event types](https://docs.github.com/en/free-pro-team@latest/developers/webhooks-and-events/github-event-types)
             and want to let you know about it 👋🤖
 
 
