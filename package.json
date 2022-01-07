@@ -9,8 +9,8 @@
   "scripts": {
     "build": "ts-node -T bin/octokit-gh-events.ts check --cached",
     "build:events": "ts-node -T bin/octokit-gh-events.ts update",
-    "lint": "prettier --check '{bin,lib}/**/*.ts' '*.{md,json}' 'bin/docs/*.md' '{payload-examples,payload-schemas,payload-types}/**/*.{ts,md,json,d.ts}'",
-    "lint:fix": "prettier --write '{bin,lib}/**/*.ts' '*.{md,json}' 'bin/docs/*.md' '{payload-examples,payload-schemas,payload-types}/**/*.{ts,md,json,d.ts}'"
+    "lint": "prettier --check '{bin,lib}/**/*.ts' '*.{md,json}' '{payload-examples,payload-schemas,payload-types}/**/*.{ts,md,json,d.ts}'",
+    "lint:fix": "prettier --write '{bin,lib}/**/*.ts' '*.{md,json}' '{payload-examples,payload-schemas,payload-types}/**/*.{ts,md,json,d.ts}'"
   },
   "repository": {
     "type": "git",
