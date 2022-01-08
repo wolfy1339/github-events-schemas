@@ -13,7 +13,10 @@ const isNotNull = <T>(value: T | null): value is T => value !== null;
 
 // https://stackoverflow.com/a/44280814/3411410
 function toSnakeCase(str: string) {
-  return str.split(/(?=[A-Z])/).join('_').toLowerCase();
+  return str
+    .split(/(?=[A-Z])/)
+    .join("_")
+    .toLowerCase();
 }
 
 export const checkOrUpdateEvents = async ({
