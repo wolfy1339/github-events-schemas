@@ -11,6 +11,11 @@ import {
 
 const isNotNull = <T>(value: T | null): value is T => value !== null;
 
+// https://stackoverflow.com/a/44280814/3411410
+function toSnakeCase(str: string) {
+  return str.split(/(?=[A-Z])/).join('_').toLowerCase();
+}
+
 export const checkOrUpdateEvents = async ({
   cached,
   checkOnly,
@@ -31,14 +36,16 @@ export const checkOrUpdateEvents = async ({
 
   const events = eventsFromScrapingDocs.map((event) => {
     const name = event.name;
+    const snakeCaseName = toSnakeCase(name.replace("Event", ""));
 
-    if (!(name in eventsFromPayloadExamplesByName)) {
+    if (!(snakeCaseName in eventsFromPayloadExamplesByName)) {
       console.warn(`[${folderName}] No payload examples for ${name}`);
 
       return event;
     }
 
-    const eventFromPayloadExamples = eventsFromPayloadExamplesByName[name];
+    const eventFromPayloadExamples =
+      eventsFromPayloadExamplesByName[snakeCaseName];
 
     return {
       name,
