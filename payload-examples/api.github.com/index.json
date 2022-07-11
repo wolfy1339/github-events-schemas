@@ -13,7 +13,7 @@
   },
   {
     "name": "CreateEvent",
-    "description": "A Git branch or tag is created. For more information, see the \"[Git data](https://docs.github.com/en/rest/reference/git)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "description": "A Git branch or tag is created. For more information, see the \"[Git database](https://docs.github.com/en/rest/reference/git#create-a-reference)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
     "actions": [],
     "properties": {
       "ref": {
@@ -64,7 +64,7 @@
   },
   {
     "name": "DeleteEvent",
-    "description": "A Git branch or tag is deleted. For more information, see the \"[Git data](https://docs.github.com/en/rest/reference/git)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "description": "A Git branch or tag is deleted. For more information, see the \"[Git database](https://docs.github.com/en/rest/reference/git#delete-a-reference)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
     "actions": [],
     "properties": {
       "ref": {
@@ -73,7 +73,7 @@
       },
       "ref_type": {
         "type": "string",
-        "description": "The type of Git ref oject deleted in the repository. Can be `branch` or `tag`."
+        "description": "The type of Git ref object deleted in the repository. Can be either `branch` or `tag`."
       }
     },
     "examples": [
@@ -117,7 +117,7 @@
   },
   {
     "name": "GollumEvent",
-    "description": "A wiki page is created or updated. For more information, see the \"[About wikis](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis)\".\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "description": "A wiki page is created or updated. For more information, see \"[About wikis](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis).\"\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
     "properties": {
       "pages": {
         "type": "array",
@@ -324,7 +324,7 @@
   },
   {
     "name": "IssuesEvent",
-    "description": "Activity related to an issue. The type of activity is specified in the `action` property of the payload object. For more information, see the \"[issues](https://docs.github.com/en/rest/reference/issues#comments)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "description": "Activity related to an issue. The type of activity is specified in the `action` property of the payload object. For more information, see the \"[issues](https://docs.github.com/en/rest/reference/issues)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
     "properties": {
       "issue": {
         "type": "object",
@@ -1322,6 +1322,22 @@
     "examples": []
   },
   {
+    "name": "PullRequestReviewThreadEvent",
+    "description": "Activity related to a comment thread on a pull request being marked as resolved or unresolved. The type of activity is specified in the `action` property of the payload object.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "properties": {
+      "pull_request": {
+        "type": "object",
+        "description": "The [pull request](https://docs.github.com/en/rest/reference/pulls) the thread pertains to."
+      },
+      "thread": {
+        "type": "object",
+        "description": "The thread that was affected."
+      }
+    },
+    "actions": ["resolved", "unresolved"],
+    "examples": []
+  },
+  {
     "name": "PushEvent",
     "description": "One or more commits are pushed to a repository branch or tag.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
     "actions": [],
@@ -1427,7 +1443,7 @@
   },
   {
     "name": "ReleaseEvent",
-    "description": "Activity related to a release. The type of activity is specified in the `action` property of the payload object. For more information, see the \"[releases](https://docs.github.com/en/rest/reference/repos#releases)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
+    "description": "Activity related to a release. The type of activity is specified in the `action` property of the payload object. For more information, see the \"[releases](https://docs.github.com/en/rest/reference/releases)\" REST API.\n\nThe [event object](#event-object-common-properties) includes properties that are common for all events. Each event object includes a `payload` property and the value is unique to each event type. The `payload` object for this event is described below.",
     "properties": {
       "changes[body][from]": {
         "type": "string",
